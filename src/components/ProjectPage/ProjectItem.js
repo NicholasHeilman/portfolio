@@ -16,7 +16,7 @@ class ProjectItem extends Component {
     render() {
         return (
             <div>
-                <div className="boxDiv">
+                <div className="card">
                     <br />
                     {this.imageDisplay()}
                     <span className="projectSpan">
