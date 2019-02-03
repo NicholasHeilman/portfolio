@@ -8,18 +8,19 @@ class ProjectPage extends Component {
 
 
 componentDidMount() {
-        this.displayProjects();
+    this.props.dispatch({ type: 'FETCH_PROJECTS'});
+        // this.displayProjects();
     };
 
       // Renders the entire app on the DOM
-    displayProjects = () => {
-          this.props.dispatch({ type: 'SET_PROJECTS'});
-    };
+    // displayProjects = () => {
+    //       this.props.dispatch({ type: 'FETCH_PROJECTS'});
+    // };
 
 
     render() {
         return (
-            <div>
+            <div className="container">
                 
             </div>
         );

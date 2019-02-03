@@ -1,21 +1,17 @@
 const express = require('express');
-const pool = require('../modules/pool.js');
-
+const pool = require('../modules/pool');
 const router = express.Router();
 
 // return all projects
 router.get('/', (req, res) => {
-  res.sendStatus(200);
-  const queryText = `SELECT * FROM "projects" ORDER BY "id" ASC`;
+  const queryText = `SELECT * FROM projects`;
   pool.query(queryText)
     .then((result) => {
       res.send(result.rows);
-    })
-    .catch((error) => {
-      console.log(`GET Error ${error}`);
+    }).catch((error) => {
+      console.log('GET Error', error);
       res.sendStatus(500);
     });
-
 });
 
 // add a new project

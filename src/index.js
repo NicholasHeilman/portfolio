@@ -23,10 +23,9 @@ const sagaMiddleware = createSagaMiddleware();
 // Database GET request
 function* fetchProject() {
     try {
-        const routerResponse = yield axios.get('/project');
-        const nextAction = { type: 'SET_PROJECTS', payload: routerResponse.data };
+        const projectResponse = yield axios.get('/project');
+        const nextAction = { type: 'SET_PROJECTS', payload: projectResponse.data };
         yield put(nextAction); 
-        console.log(routerResponse.data);
     } catch (error) {
         console.log('GET Error', error);
         alert('GET Error');
@@ -37,6 +36,7 @@ function* fetchProject() {
 const projects = (state = [], action) => {
     switch (action.type) {
         case 'SET_PROJECTS':
+            console.log(this.state);
             return action.payload;
         default:
             return state;
