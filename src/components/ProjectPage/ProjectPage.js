@@ -4,26 +4,30 @@ import ProjectItem from './ProjectItem.js';
 
 class ProjectPage extends Component {
 
+    componentDidMount(){
+        this.getProject();
+    }
 
+    getProject(){
+        const action = {type: 'FETCH_PROJECT' };
+        this.props.dispatch(action);
+    }
+    projectDisplay = () => {
+        return (
+            this.props.projects.map((project, i) => {
+                return <ProjectItem key={i} project={project} />
+            })
+        )
+    }
 
-
-componentDidMount() {
-    this.props.dispatch({ type: 'FETCH_PROJECTS'});
-        // this.displayProjects();
-    };
-
-      // Renders the entire app on the DOM
-    // displayProjects = () => {
-    //       this.props.dispatch({ type: 'FETCH_PROJECTS'});
-    // };
-
+  
 
     render() {
         return (
             <div className="container">
-                
+                {this.projectDisplay()}
             </div>
-        );
+        )
     }
 }
 
