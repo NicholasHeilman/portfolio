@@ -16,7 +16,7 @@ class ProjectItem extends Component {
 
 
     // conditional render for image if Null
-    imageDisplay = () => {
+    thumbnailDisplay = () => {
         if (this.props.project.thumbnail === null) {
             return <img src="./images/goat_small.jpg" alt="" />;
         } else {
@@ -27,6 +27,7 @@ class ProjectItem extends Component {
    
     render() {
         return (
+            // i don't know what this does material-ui said I needed it 
     //    function MediaCard(props) {
     //         const { classes } = props;
             
@@ -35,7 +36,7 @@ class ProjectItem extends Component {
             <CardActionArea>
               <CardMedia
                 className="Card"
-                image="{this.imageDisplay()}"
+                image={this.thumbnailDisplay()}
                 
               />
               <CardContent>
@@ -46,29 +47,25 @@ class ProjectItem extends Component {
                     {this.props.project.description}
                 </Typography>
                 <Typography>
-                Uses: {this.props.project.tag_name}
+                    Uses: {this.props.project.tag_name}
                 </Typography>
-              </CardContent>
-            </CardActionArea>
-            <CardActions>
-                <a href={this.props.project.github}>
-              <Button size="small" color="primary">
-                    GitHub
-              </Button></a>
-              {this.props.project.website &&
-                        <a href={this.props.project.website}>
-              <Button size="small" color="primary">
-                   Website
-              </Button></a>}
-            </CardActions>
+                </CardContent>
+                </CardActionArea>
+                    <CardActions>
+                        <a href={this.props.project.github}>
+                        <Button size="small" color="primary">
+                            GitHub
+                        </Button></a>
+                            {this.props.project.website &&
+                            <a href={this.props.project.website}>
+                        <Button size="small" color="primary">
+                             Website
+                        </Button></a>}
+                </CardActions>
           </Card>
         )
     }
-        }
-// material-ui component
-// MediaCard.propTypes = {
-//     classes: PropTypes.object.isRequired,
-//   };
+}
 
 const mapStoreToProps = (reduxStore) => {
     return { projects: reduxStore.projects }
