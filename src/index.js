@@ -15,6 +15,8 @@ import { takeEvery, put } from 'redux-saga/effects'
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_PROJECT', fetchProject );
+    yield takeEvery('REMOVE_PROJECT', deleteProject);
+    yield takeEvery('POST_PROJECT', postProject);    
 }
 
 // Create sagaMiddleware
@@ -29,6 +31,17 @@ function* fetchProject() {
     } catch (error) {
         console.log('GET Error', error);
         alert('GET Error');
+    }
+}
+
+function* postProject(action){
+    try{
+        yield axios.post('/project', action.payload);
+        const nextAction = {type: 'FETCH_PROJECT'};
+        yield put(nextAction)
+    } catch(error) {
+        yield console.log('POST Error', error);
+        alert('POST Error');
     }
 }
 
@@ -52,6 +65,20 @@ const tags = (state = [], action) => {
     }
 }
 
+// function* postProject
+
+// Delete
+function* deleteProject(action){
+    const projectId = action.payload.projectId
+    try{
+        yield axios.delete(`/project/${projectId}`);
+        const nextAction = {type: 'FETCH_PROJECT'};
+        yield put(nextAction);
+    } catch (error) {
+        console.log('Delete Error', error);
+        alert('Delete Error');
+    }
+}
 const storeInstance = createStore(
     combineReducers({
         projects,

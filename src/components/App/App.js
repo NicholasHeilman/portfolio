@@ -3,6 +3,7 @@ import './App.css';
 import ProjectPage from '../ProjectPage/ProjectPage.js';
 import { connect } from 'react-redux';
 import {HashRouter as Router, Route } from 'react-router-dom';
+import Header from './Header/Header.js';
 import AdminPage from '../AdminPage/AdminPage.js';
 
 
@@ -21,6 +22,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      <Header />
       <Router>
         <div>
           <Route exact path="/" component={ProjectPage} />

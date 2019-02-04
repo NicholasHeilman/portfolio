@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AdminTable from './AdminTable.js';
+import AdminForm from './AdminForm.js';
 
 
 
@@ -15,7 +16,9 @@ class AdminPage extends Component {
         const action = {type: 'FETCH_PROJECT' };
         this.props.dispatch(action);
     }
-    projectDisplay = () => {
+
+    //Display projects in a Table on the Admin page
+    projectDisplayTable = () => {
         return (
             this.props.projects.map((project, i) => {
                 return <AdminTable key={i} project={project} />
@@ -26,8 +29,10 @@ class AdminPage extends Component {
 
     render() {
         return (
-            <div className="adminTable">
-                {this.projectDisplay()}
+            
+            <div className="adminPage">
+                <AdminForm />
+                {this.projectDisplayTable()}
             </div>
         );
     }
