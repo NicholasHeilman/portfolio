@@ -32,18 +32,20 @@ function* fetchProject() {
         console.log('GET Error', error);
         alert('GET Error');
     }
-}
+}// end GET
 
+// POST new Projects to database
 function* postProject(action){
     try{
         yield axios.post('/project', action.payload);
         const nextAction = {type: 'FETCH_PROJECT'};
         yield put(nextAction)
     } catch(error) {
-        yield console.log('POST Error', error);
+        // console.log(action.payload);
+        yield console.log('POST Error Index.JS', error);
         alert('POST Error');
     }
-}
+} //end POST
 
 // Used to store projects returned from the server
 const projects = (state = [], action) => {
@@ -53,7 +55,7 @@ const projects = (state = [], action) => {
         default:
             return state;
     }
-}
+}// end SET
 
 // Used to store the project tags (e.g. 'React', 'jQuery', 'Angular', 'Node.js')
 const tags = (state = [], action) => {

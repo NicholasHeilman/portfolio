@@ -62,21 +62,16 @@ class AdminForm extends Component {
 
      // handle change on Image Thumbnail Input
      imageAdd = (event) => {
-         console.log(this.state);
         this.setState({
             thumbnail: event.target.value
         })
     }
 
-    submitForm = () => {
-       
-        const action = ({ type: 'POST_PROJECT', payload: this.state });
+    submitBtn = () => {
+        console.log(this.state);
+        const action = {type: 'POST_PROJECT',
+                        payload: this.state };
         this.props.dispatch(action);
-        // console.log('Submit Click');
-        // console.log(this.state);
-        // const action = {type: 'POST_PROJECT',
-        //                 payload: this.state };
-        // this.props.dispatch(action);
     }
     render() {
         return (
@@ -99,7 +94,7 @@ class AdminForm extends Component {
                                 <option value="6">HTML</option>
                     </select>
                     <input type="file" name="thumbnail" placeholder="Image" onChange={this.imageAdd} />
-                    <button type="submit" onClick={this.submitForm}>Submit</button>
+                    <button type="submit" onClick={this.submitBtn}>Submit</button>
                 
                     
             </div>

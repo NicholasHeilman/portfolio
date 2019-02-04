@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AdminTable from './AdminTable.js';
 import AdminForm from './AdminForm.js';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableHead from '@material-ui/core/TableHead';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
+
 
 
 
@@ -32,7 +38,17 @@ class AdminPage extends Component {
             
             <div className="adminPage">
                 <AdminForm />
-                {this.projectDisplayTable()}
+                <Table className="AdminTable">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Project</TableCell>
+                            <TableCell align="right">Delete</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {this.projectDisplayTable()}
+                    </TableBody>
+                </Table>
             </div>
         );
     }
